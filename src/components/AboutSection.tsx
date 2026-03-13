@@ -3,7 +3,6 @@ import { Box, Container, Typography, Stack, Paper, Card, CardContent, Chip } fro
 import { motion, useScroll, useTransform } from "motion/react";
 import MapIcon from '@mui/icons-material/Map';
 import CodeIcon from '@mui/icons-material/Code';
-import GridBackground from './GridBackground';
 import ContactSection from './ContactSection';
 import { personalInfo, certifications, skills } from '../data';
 
@@ -61,8 +60,18 @@ export default function AboutSection({ compact = false }: { compact?: boolean })
   };
 
   return (
-    <Box ref={ref} sx={{ py: compact ? 4 : 12, position: 'relative', minHeight: compact ? 'auto' : '100vh', overflow: 'hidden' }}>
-      {!compact && <GridBackground />}
+    <Box ref={ref} id="about" sx={{ 
+      height: compact ? 'auto' : '100vh', 
+      display: 'flex',
+      alignItems: 'center',
+      position: 'relative', 
+      overflowY: { xs: 'hidden', md: 'auto' },
+      overflowX: 'hidden',
+      bgcolor: 'transparent',
+      '&::-webkit-scrollbar': { display: 'none' },
+      msOverflowStyle: 'none',
+      scrollbarWidth: 'none'
+    }}>
       
       {/* Parallax Background Elements */}
       {!compact && (
@@ -76,102 +85,133 @@ export default function AboutSection({ compact = false }: { compact?: boolean })
         </>
       )}
 
-      <Container maxWidth={compact ? false : "lg"} disableGutters={compact} sx={{ position: 'relative', zIndex: 1 }}>
-        <FadeInSection>
-          <Typography variant="h2" sx={{ 
-            mb: { xs: 4, md: 6 }, 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 2,
-            fontSize: { xs: '2rem', md: '3.75rem' }
+      <Container maxWidth={compact ? false : "lg"} disableGutters={compact} sx={{ position: 'relative', zIndex: 1, pt: { xs: 10, md: 0 }, height: '100%' }}>
+        <Box sx={{ 
+          display: 'grid', 
+          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, 
+          gap: { xs: 4, md: 8 },
+          alignItems: 'center',
+          height: '100%'
+        }}>
+          {/* Left Column: About Text */}
+          <Box sx={{ 
+            maxHeight: { md: '80vh' }, 
+            overflowY: { md: 'auto' }, 
+            pr: { md: 2 },
+            '&::-webkit-scrollbar': { display: 'none' },
+            msOverflowStyle: 'none',
+            scrollbarWidth: 'none'
           }}>
-            <Box component="span" sx={{ width: 4, height: { xs: 30, md: 40 }, bgcolor: 'primary.main' }} />
-            ABOUT ME
-          </Typography>
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            <Stack spacing={3}>
-              {personalInfo.summary.map((paragraph, index) => (
-                <motion.div key={index} variants={item}>
-                  <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.8, color: 'text.secondary' }}>
-                    {paragraph}
-                  </Typography>
-                </motion.div>
-              ))}
-            </Stack>
-          </motion.div>
-        </FadeInSection>
-        
-        {/* Skills Section */}
-        <Box sx={{ mt: 8 }}>
-          <FadeInSection>
-            <motion.div
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-50px" }}
-            >
-              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(4, 1fr)' }, gap: { xs: 2, sm: 4 } }}>
-                {skills.slice(0, 4).map((skill, index) => (
-                  <motion.div key={index} variants={legoDrop}>
-                    <Box
-                      sx={{
-                        p: 3,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: 2,
-                        aspectRatio: '1/1',
-                        transition: 'all 0.3s',
-                        bgcolor: 'rgba(255, 255, 255, 0.03)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                        borderRadius: '16px',
-                        boxShadow: '0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
-                        '&:hover': { 
-                          color: 'primary.main', 
-                          transform: 'translateY(-5px)',
-                          borderColor: 'primary.main',
-                          boxShadow: '0 15px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.2)'
-                        }
-                      }}
-                    >
-                      <Box sx={{ color: 'inherit', display: 'flex', '& > svg': { fontSize: { xs: 40, sm: 60 }, opacity: 0.8 } }}>
-                        {skill.icon}
-                      </Box>
-                      <Typography variant="subtitle1" fontWeight="bold" textAlign="center" sx={{ opacity: 0.9 }}>
-                        {skill.name}
-                      </Typography>
-                    </Box>
-                  </motion.div>
-                ))}
-              </Box>
-            </motion.div>
-          </FadeInSection>
-        </Box>
-
-        {/* Merged Contact Section */}
-        {!compact && (
-          <Box sx={{ mt: { xs: 8, md: 12 } }}>
             <FadeInSection>
               <Typography variant="h2" sx={{ 
-                mb: { xs: 4, md: 6 }, 
+                mb: { xs: 3, md: 4 }, 
                 display: 'flex', 
                 alignItems: 'center', 
                 gap: 2,
-                fontSize: { xs: '2rem', md: '3.75rem' }
+                fontSize: { xs: '2rem', md: '3rem' }
               }}>
                 <Box component="span" sx={{ width: 4, height: { xs: 30, md: 40 }, bgcolor: 'primary.main' }} />
-                CONTACT
+                ABOUT ME
               </Typography>
-              <ContactSection />
+              <motion.div
+                variants={container}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-50px" }}
+              >
+                <Stack spacing={2}>
+                  {personalInfo.summary.map((paragraph, index) => (
+                    <motion.div key={index} variants={item}>
+                      <Typography variant="body1" sx={{ fontSize: { xs: '0.95rem', md: '1.05rem' }, lineHeight: 1.7, color: 'text.secondary' }}>
+                        {paragraph}
+                      </Typography>
+                    </motion.div>
+                  ))}
+                </Stack>
+              </motion.div>
             </FadeInSection>
           </Box>
-        )}
+          
+          {/* Right Column: Skills & Contact */}
+          <Box sx={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: { xs: 4, md: 6 },
+            maxHeight: { md: '80vh' }, 
+            overflowY: { md: 'auto' }, 
+            pr: { md: 2 },
+            '&::-webkit-scrollbar': { display: 'none' },
+            msOverflowStyle: 'none',
+            scrollbarWidth: 'none'
+          }}>
+            {/* Skills Section */}
+            <Box>
+              <FadeInSection>
+                <motion.div
+                  variants={container}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: "-50px" }}
+                >
+                  <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2 }}>
+                    {skills.slice(0, 4).map((skill, index) => (
+                      <motion.div key={index} variants={legoDrop}>
+                        <Box
+                          sx={{
+                            p: 2,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: 1,
+                            aspectRatio: '16/9',
+                            transition: 'all 0.3s',
+                            bgcolor: 'rgba(255, 255, 255, 0.03)',
+                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                            borderRadius: '12px',
+                            boxShadow: '0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
+                            '&:hover': { 
+                              color: 'primary.main', 
+                              transform: 'translateY(-5px)',
+                              borderColor: 'primary.main',
+                              boxShadow: '0 15px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.2)'
+                            }
+                          }}
+                        >
+                          <Box sx={{ color: 'inherit', display: 'flex', '& > svg': { fontSize: 32, opacity: 0.8 } }}>
+                            {skill.icon}
+                          </Box>
+                          <Typography variant="subtitle2" fontWeight="bold" textAlign="center" sx={{ opacity: 0.9 }}>
+                            {skill.name}
+                          </Typography>
+                        </Box>
+                      </motion.div>
+                    ))}
+                  </Box>
+                </motion.div>
+              </FadeInSection>
+            </Box>
+
+            {/* Merged Contact Section */}
+            {!compact && (
+              <Box>
+                <FadeInSection>
+                  <Typography variant="h3" sx={{ 
+                    mb: 3, 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: 2,
+                    fontSize: { xs: '1.5rem', md: '2rem' }
+                  }}>
+                    <Box component="span" sx={{ width: 4, height: 24, bgcolor: 'primary.main' }} />
+                    CONTACT
+                  </Typography>
+                  <ContactSection />
+                </FadeInSection>
+              </Box>
+            )}
+          </Box>
+        </Box>
       </Container>
     </Box>
   );

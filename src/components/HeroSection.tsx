@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Box, Container, Typography, Stack, Button, IconButton, Modal, Backdrop, Fade, Avatar } from '@mui/material';
 import { motion, AnimatePresence } from "motion/react";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -6,14 +6,23 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
-import GridBackground from './GridBackground';
 import { personalInfo, skills } from '../data';
 import { useTheme, alpha } from '@mui/material/styles';
+import Lottie from 'lottie-react';
 
 export default function HeroSection() {
   const theme = useTheme();
   const ref = useRef(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [lottieData, setLottieData] = useState<any>(null);
+  const lottieRef = useRef<any>(null);
+
+  useEffect(() => {
+    fetch('https://assets3.lottiefiles.com/packages/lf20_w51pcehl.json')
+      .then(res => res.json())
+      .then(data => setLottieData(data))
+      .catch(err => console.error("Failed to load Lottie animation", err));
+  }, []);
 
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
@@ -76,21 +85,24 @@ export default function HeroSection() {
     <Box
       ref={ref}
       sx={{
-        minHeight: '100vh',
+        height: { xs: 'auto', md: '100vh' },
+        minHeight: { xs: '100vh', md: 'auto' },
         position: 'relative',
-        overflow: 'hidden',
+        overflowY: { xs: 'hidden', md: 'auto' },
+        overflowX: 'hidden',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        '&::-webkit-scrollbar': { display: 'none' },
+        msOverflowStyle: 'none',
+        scrollbarWidth: 'none'
       }}
     >
-      <GridBackground />
-      
       <Container sx={{ 
         position: 'relative', 
         zIndex: 1, 
-        pt: { xs: 12, md: 10 }, 
-        pb: { xs: 6, md: 8 }, 
+        pt: { xs: 12, md: 0 }, 
+        pb: { xs: 6, md: 0 }, 
         px: { xs: 2, md: 4 }, 
         maxWidth: '1100px !important' 
       }}>
@@ -115,10 +127,18 @@ export default function HeroSection() {
 
           <Box sx={{ 
             display: 'flex', 
-            flexDirection: 'column', 
-            alignItems: { xs: 'center', sm: 'flex-start' }, 
+            flexDirection: { xs: 'column', md: 'row' }, 
+            alignItems: 'center', 
+            justifyContent: 'space-between',
+            width: '100%'
           }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: { xs: 'center', sm: 'flex-start' }, 
+              flex: 1
+            }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               {/* Hero Title Block */}
               <Box sx={{ textAlign: { xs: 'center', sm: 'left' }, display: 'flex', flexDirection: 'column', gap: 1 }}>
                 
@@ -241,8 +261,8 @@ export default function HeroSection() {
               {/* CTA Section */}
               <motion.div variants={textVariants}>
                 <Stack 
-                  direction={{ xs: 'column', sm: 'row' }} 
-                  spacing={3.5} 
+                  direction="column" 
+                  spacing={4} 
                   alignItems={{ xs: 'center', sm: 'flex-start' }}
                   sx={{ mt: 5 }}
                 >
@@ -360,9 +380,8 @@ export default function HeroSection() {
                     fontSize: 18, 
                     lineHeight: 1.6, 
                     color: 'text.secondary', 
-                    maxWidth: 500, 
+                    maxWidth: 600, 
                     textAlign: { xs: 'center', sm: 'left' },
-                    transition: 'margin-top 0.3s ease'
                   }}>
                     Feel free to explore{' '}
                     <Typography 
@@ -397,7 +416,35 @@ export default function HeroSection() {
                 </Stack>
               </motion.div>
             </Box>
+          </Box>
 
+            {/* Lottie Animation */}
+            <Box 
+              sx={{ 
+                display: { xs: 'none', md: 'flex' }, 
+                width: { md: 350, lg: 450 },
+                justifyContent: 'center',
+                alignItems: 'center',
+                ml: { md: 4 },
+                cursor: 'pointer',
+                transition: 'transform 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.02)'
+                }
+              }}
+              onMouseEnter={() => lottieRef.current?.play()}
+              onMouseLeave={() => lottieRef.current?.pause()}
+            >
+              {lottieData && (
+                <Lottie 
+                  lottieRef={lottieRef}
+                  animationData={lottieData} 
+                  loop={true} 
+                  autoplay={false} 
+                  style={{ width: '100%', height: '100%' }}
+                />
+              )}
+            </Box>
           </Box>
 
         </motion.div>

@@ -34,7 +34,12 @@ The first thing a user sees is a cinematic intro. We use `framer-motion` to anim
 - **Collapsed**: The logo shrinks and moves to its final position in the NavBar.
 - **Hidden**: The intro overlay fades out, revealing the main site.
 
-### 2. Dynamic Backgrounds (`StarBackground.tsx` & `GridBackground.tsx`)
+### 2. Lottie Animation Integration (`HeroSection.tsx`)
+To make the hero section more engaging, we integrated a Lottie animation using the `lottie-react` library.
+- **Dynamic Fetching**: The animation JSON data is fetched dynamically from a URL to keep the bundle size small.
+- **Interactive Playback**: The animation is configured to play only when the user hovers over it, adding a delightful micro-interaction.
+
+### 3. Dynamic Backgrounds (`StarBackground.tsx` & `GridBackground.tsx`)
 To create depth, we use layered backgrounds:
 - **StarBackground**: Uses a canvas or multiple divs with random positions and animations to simulate a starry night sky.
 - **GridBackground**: A subtle, animated grid that adds a technical, sci-fi feel.

@@ -71,15 +71,19 @@ export default function App() {
         <StarBackground />
         <GridBackground />
         <GlobalStyles
-          styles={{
+          styles={(theme) => ({
             html: { scrollBehavior: 'smooth' },
             body: { 
               overflowX: 'hidden',
+              overflowY: 'hidden', // Hide scrollbar globally on desktop
+              [theme.breakpoints.down('md')]: {
+                overflowY: 'auto', // Allow scrolling on mobile
+              },
               '&::-webkit-scrollbar': { display: 'none' },
               msOverflowStyle: 'none',
               scrollbarWidth: 'none'
             }
-          }}
+          })}
         />
         <NavBar />
         <AnimatedRoutes />

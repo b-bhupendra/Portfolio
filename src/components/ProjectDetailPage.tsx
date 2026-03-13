@@ -4,7 +4,6 @@ import { Box, Typography, Button, Chip, Container } from '@mui/material';
 import { motion } from 'motion/react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { projects } from '../data';
-import GridBackground from './GridBackground';
 
 export default function ProjectDetailPage() {
   const { projectId } = useParams();
@@ -13,10 +12,29 @@ export default function ProjectDetailPage() {
   const project = projects.find(p => p.id === projectId) || projects[0];
 
   return (
-    <Box sx={{ minHeight: '100vh', pt: 12, pb: 8, position: 'relative' }}>
-      <GridBackground />
+    <Box sx={{ 
+      height: { xs: 'auto', md: '100vh' },
+      minHeight: { xs: '100vh', md: 'auto' }, 
+      pt: { xs: 12, md: 0 }, 
+      pb: { xs: 8, md: 0 }, 
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      overflowY: { xs: 'hidden', md: 'auto' },
+      overflowX: 'hidden',
+      '&::-webkit-scrollbar': { display: 'none' },
+      msOverflowStyle: 'none',
+      scrollbarWidth: 'none'
+    }}>
       
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ 
+        maxHeight: { md: '90vh' }, 
+        overflowY: { md: 'auto' }, 
+        pr: { md: 2 },
+        '&::-webkit-scrollbar': { display: 'none' },
+        msOverflowStyle: 'none',
+        scrollbarWidth: 'none'
+      }}>
         <Button 
           startIcon={<ArrowBackIcon />} 
           onClick={() => navigate('/projects')}
