@@ -5,7 +5,7 @@ import MapIcon from '@mui/icons-material/Map';
 import CodeIcon from '@mui/icons-material/Code';
 import GridBackground from './GridBackground';
 import ContactSection from './ContactSection';
-import { personalInfo, certifications } from '../data';
+import { personalInfo, certifications, skills } from '../data';
 
 function FadeInSection({ children }: { children: React.ReactNode }) {
   return (
@@ -20,7 +20,7 @@ function FadeInSection({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function AboutSection() {
+export default function AboutSection({ compact = false }: { compact?: boolean }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -46,22 +46,46 @@ export default function AboutSection() {
     show: { opacity: 1, y: 0 }
   };
 
+  const legoDrop = {
+    hidden: { opacity: 0, y: -150, scale: 0.8 },
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { 
+        type: "spring" as const, 
+        bounce: 0.5, 
+        duration: 1,
+      } 
+    }
+  };
+
   return (
-    <Box ref={ref} sx={{ py: 12, position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
-      <GridBackground />
+    <Box ref={ref} sx={{ py: compact ? 4 : 12, position: 'relative', minHeight: compact ? 'auto' : '100vh', overflow: 'hidden' }}>
+      {!compact && <GridBackground />}
       
       {/* Parallax Background Elements */}
-      <motion.div style={{ y: y1, opacity, position: 'absolute', top: '10%', right: '5%', zIndex: 0 }}>
-        <Box sx={{ width: 300, height: 300, border: '1px solid', borderColor: 'primary.main', opacity: 0.1, borderRadius: '50%' }} />
-      </motion.div>
-      <motion.div style={{ y: y2, opacity, position: 'absolute', bottom: '10%', left: '5%', zIndex: 0 }}>
-        <Box sx={{ width: 200, height: 200, bgcolor: 'primary.main', opacity: 0.05, borderRadius: '50%', filter: 'blur(40px)' }} />
-      </motion.div>
+      {!compact && (
+        <>
+          <motion.div style={{ y: y1, opacity, position: 'absolute', top: '10%', right: '5%', zIndex: 0 }}>
+            <Box sx={{ width: 300, height: 300, border: '1px solid', borderColor: 'primary.main', opacity: 0.1, borderRadius: '50%' }} />
+          </motion.div>
+          <motion.div style={{ y: y2, opacity, position: 'absolute', bottom: '10%', left: '5%', zIndex: 0 }}>
+            <Box sx={{ width: 200, height: 200, bgcolor: 'primary.main', opacity: 0.05, borderRadius: '50%', filter: 'blur(40px)' }} />
+          </motion.div>
+        </>
+      )}
 
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth={compact ? false : "lg"} disableGutters={compact} sx={{ position: 'relative', zIndex: 1 }}>
         <FadeInSection>
-          <Typography variant="h2" sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box component="span" sx={{ width: 4, height: 40, bgcolor: 'primary.main' }} />
+          <Typography variant="h2" sx={{ 
+            mb: { xs: 4, md: 6 }, 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 2,
+            fontSize: { xs: '2rem', md: '3.75rem' }
+          }}>
+            <Box component="span" sx={{ width: 4, height: { xs: 30, md: 40 }, bgcolor: 'primary.main' }} />
             ABOUT ME
           </Typography>
           <motion.div
@@ -70,89 +94,84 @@ export default function AboutSection() {
             whileInView="show"
             viewport={{ once: true, margin: "-50px" }}
           >
-            <Stack direction={{ xs: 'column', md: 'row' }} spacing={6}>
-              <Box sx={{ flex: 2 }}>
-                <Stack spacing={3}>
-                  {personalInfo.summary.map((paragraph, index) => (
-                    <motion.div key={index} variants={item}>
-                      <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.8, color: 'text.secondary' }}>
-                        {paragraph}
-                      </Typography>
-                    </motion.div>
-                  ))}
-                </Stack>
-                <Box sx={{ mt: 6, display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 3 }}>
-                  <motion.div variants={item}>
-                    <Paper 
-                      elevation={0} 
-                      sx={{ 
-                        p: 3, 
-                        bgcolor: 'background.paper', 
-                        border: '1px solid',
-                        borderColor: 'divider',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 2,
-                        transition: 'all 0.3s',
-                        '&:hover': { borderColor: 'primary.main' }
-                      }}
-                    >
-                      <MapIcon color="primary" />
-                      <Typography variant="subtitle1" fontWeight="bold">{personalInfo.location}</Typography>
-                    </Paper>
-                  </motion.div>
-                  <motion.div variants={item}>
-                    <Paper 
-                      elevation={0} 
-                      sx={{ 
-                        p: 3, 
-                        bgcolor: 'background.paper', 
-                        border: '1px solid',
-                        borderColor: 'divider',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 2,
-                        transition: 'all 0.3s',
-                        '&:hover': { borderColor: 'primary.main' }
-                      }}
-                    >
-                      <CodeIcon color="primary" />
-                      <Typography variant="subtitle1" fontWeight="bold">Data Enthusiast</Typography>
-                    </Paper>
-                  </motion.div>
-                </Box>
-              </Box>
-              <Box sx={{ flex: 1 }}>
-                <motion.div variants={item}>
-                  <Card sx={{ height: '100%', bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
-                    <CardContent sx={{ p: 4 }}>
-                      <Typography variant="h5" sx={{ mb: 4, fontWeight: 700, color: 'primary.main' }}>CERTIFICATIONS</Typography>
-                      <Stack spacing={2}>
-                        {certifications.map((cert, index) => (
-                          <Box key={index} sx={{ display: 'flex', alignItems: 'start', gap: 2 }}>
-                            <Box sx={{ mt: 1, minWidth: 8, height: 8, bgcolor: 'primary.main' }} />
-                            <Typography variant="body2" sx={{ color: 'text.secondary' }}>{cert}</Typography>
-                          </Box>
-                        ))}
-                      </Stack>
-                    </CardContent>
-                  </Card>
+            <Stack spacing={3}>
+              {personalInfo.summary.map((paragraph, index) => (
+                <motion.div key={index} variants={item}>
+                  <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.8, color: 'text.secondary' }}>
+                    {paragraph}
+                  </Typography>
                 </motion.div>
-              </Box>
+              ))}
             </Stack>
           </motion.div>
         </FadeInSection>
         
-        {/* Merged Contact Section */}
-        <Box sx={{ mt: 12 }}>
+        {/* Skills Section */}
+        <Box sx={{ mt: 8 }}>
           <FadeInSection>
-            <Typography variant="h2" sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box component="span" sx={{ width: 4, height: 40, bgcolor: 'primary.main' }} />
-              CONTACT
-            </Typography>
-            <ContactSection />
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(4, 1fr)' }, gap: { xs: 2, sm: 4 } }}>
+                {skills.slice(0, 4).map((skill, index) => (
+                  <motion.div key={index} variants={legoDrop}>
+                    <Box
+                      sx={{
+                        p: 3,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 2,
+                        aspectRatio: '1/1',
+                        transition: 'all 0.3s',
+                        bgcolor: 'rgba(255, 255, 255, 0.03)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        borderRadius: '16px',
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
+                        '&:hover': { 
+                          color: 'primary.main', 
+                          transform: 'translateY(-5px)',
+                          borderColor: 'primary.main',
+                          boxShadow: '0 15px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.2)'
+                        }
+                      }}
+                    >
+                      <Box sx={{ color: 'inherit', display: 'flex', '& > svg': { fontSize: { xs: 40, sm: 60 }, opacity: 0.8 } }}>
+                        {skill.icon}
+                      </Box>
+                      <Typography variant="subtitle1" fontWeight="bold" textAlign="center" sx={{ opacity: 0.9 }}>
+                        {skill.name}
+                      </Typography>
+                    </Box>
+                  </motion.div>
+                ))}
+              </Box>
+            </motion.div>
           </FadeInSection>
         </Box>
+
+        {/* Merged Contact Section */}
+        {!compact && (
+          <Box sx={{ mt: { xs: 8, md: 12 } }}>
+            <FadeInSection>
+              <Typography variant="h2" sx={{ 
+                mb: { xs: 4, md: 6 }, 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: 2,
+                fontSize: { xs: '2rem', md: '3.75rem' }
+              }}>
+                <Box component="span" sx={{ width: 4, height: { xs: 30, md: 40 }, bgcolor: 'primary.main' }} />
+                CONTACT
+              </Typography>
+              <ContactSection />
+            </FadeInSection>
+          </Box>
+        )}
       </Container>
     </Box>
   );

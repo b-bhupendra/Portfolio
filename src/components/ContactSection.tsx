@@ -41,8 +41,16 @@ export default function ContactSection() {
     <Box sx={{ position: 'relative' }}>
       <Container maxWidth="md" sx={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
         <FadeInSection>
-          <Typography variant="h2" sx={{ mb: 3 }}>LET'S WORK TOGETHER</Typography>
-          <Typography variant="h5" sx={{ mb: 8, color: 'text.secondary', fontWeight: 400 }}>
+          <Typography variant="h2" sx={{ 
+            mb: 3,
+            fontSize: { xs: '2rem', md: '3.75rem' }
+          }}>LET'S WORK TOGETHER</Typography>
+          <Typography variant="h5" sx={{ 
+            mb: { xs: 4, md: 8 }, 
+            color: 'text.secondary', 
+            fontWeight: 400,
+            fontSize: { xs: '1.1rem', md: '1.5rem' }
+          }}>
             I'm always looking to connect with fellow data enthusiasts and professionals.
           </Typography>
 
@@ -147,7 +155,7 @@ export default function ContactSection() {
             </Box>
           </motion.div>
 
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 12 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: { xs: 8, md: 12 } }}>
             © {new Date().getFullYear()} Bhupendra Singh Rawat. All rights reserved.
           </Typography>
         </FadeInSection>

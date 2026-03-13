@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
+import { projects } from '../data';
 import { 
   Code, FileCode, Brain, Server, FileCode2, Table, LineChart, Box as BoxIcon, Globe, Network, Database, Palette, Smartphone, Flame, Layers, CheckCircle, Cloud, Zap, Snowflake, Wind, Layout, PieChart, Terminal, Activity, Boxes, Move, Clock, Monitor
 } from 'lucide-react';
@@ -60,8 +62,8 @@ const CarouselContainer = styled(Box, {
 
 const CarouselItem = styled('div')({
   '--items': 10,
-  '--width': 'clamp(180px, 28vw, 300px)',
-  '--height': 'clamp(240px, 38vw, 400px)',
+  '--width': 'clamp(240px, 60vw, 300px)',
+  '--height': 'clamp(320px, 80vw, 400px)',
   '--x': 'calc(var(--active) * 800%)',
   '--y': 'calc(var(--active) * 200%)',
   '--rot': 'calc(var(--active) * 120deg)',
@@ -144,19 +146,6 @@ const ItemImage = styled('img')({
   pointerEvents: 'none',
 });
 
-const projectsData = [
-  { title: 'AI Code Assistant', img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop', tools: ['React', 'TypeScript', 'OpenAI API', 'Node.js'] },
-  { title: 'Crypto Trading Bot', img: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=800&auto=format&fit=crop', tools: ['Python', 'Pandas', 'Binance API', 'Docker'] },
-  { title: 'Real Estate Platform', img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop', tools: ['Next.js', 'GraphQL', 'PostgreSQL', 'Tailwind'] },
-  { title: 'Health Tracking App', img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop', tools: ['React Native', 'Firebase', 'Redux', 'Jest'] },
-  { title: 'Cloud Data Pipeline', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop', tools: ['AWS S3', 'Lambda', 'Snowflake', 'Airflow'] },
-  { title: 'Social Media Dashboard', img: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=800&auto=format&fit=crop', tools: ['Vue.js', 'D3.js', 'Express', 'MongoDB'] },
-  { title: 'Multiplayer Game Server', img: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=800&auto=format&fit=crop', tools: ['Go', 'WebSockets', 'Redis', 'Kubernetes'] },
-  { title: 'Portfolio Website', img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop', tools: ['React', 'Framer Motion', 'MUI', 'Vite'] },
-  { title: 'Inventory Management', img: 'https://images.unsplash.com/photo-1586528116311-ad8ed7c508b0?q=80&w=800&auto=format&fit=crop', tools: ['Django', 'PostgreSQL', 'Celery', 'Redis'] },
-  { title: '3D Product Configurator', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop', tools: ['Three.js', 'WebGL', 'React Fiber', 'GSAP'] },
-];
-
 const ToolItem = ({ tool }: { tool: string }) => {
   const [displayText, setDisplayText] = useState(tool);
   const [isScrambling, setIsScrambling] = useState(false);
@@ -234,6 +223,7 @@ const ToolItem = ({ tool }: { tool: string }) => {
 };
 
 export default function SkillsSection() {
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(50);
   const [isDown, setIsDown] = useState(false);
@@ -300,7 +290,7 @@ export default function SkillsSection() {
     };
   }, [isDown, startX]);
 
-  const active = Math.floor((progress / 100) * (projectsData.length - 1));
+  const active = Math.floor((progress / 100) * (projects.length - 1));
 
   return (
     <Box sx={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
@@ -314,16 +304,20 @@ export default function SkillsSection() {
             transition={{ duration: 1, ease: 'easeInOut' }}
             style={{ position: 'absolute', top: '12%', left: 0, width: '100%', textAlign: 'center', zIndex: 2, pointerEvents: 'none' }}
           >
-            <Typography variant="h2" sx={{ color: 'white', textShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>PROJECTS</Typography>
+            <Typography variant="h2" sx={{ 
+              color: 'white', 
+              textShadow: '0 4px 10px rgba(0,0,0,0.5)',
+              fontSize: { xs: '2.5rem', md: '3.75rem' }
+            }}>PROJECTS</Typography>
             <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.7)', mt: 1 }}>Scroll or drag to explore</Typography>
           </motion.div>
         )}
       </AnimatePresence>
 
       <CarouselContainer ref={containerRef} isDown={isDown}>
-        {projectsData.map((project, index) => {
-          const zIndex = getZindex(projectsData.length, active, index);
-          const activeVal = (index - active) / projectsData.length;
+        {projects.map((project, index) => {
+          const zIndex = getZindex(projects.length, active, index);
+          const activeVal = (index - active) / projects.length;
 
           return (
             <CarouselItem
@@ -331,16 +325,20 @@ export default function SkillsSection() {
               style={{
                 '--zIndex': zIndex,
                 '--active': activeVal,
-                '--items': projectsData.length,
+                '--items': projects.length,
               } as React.CSSProperties}
               onClick={() => {
-                setProgress((index / (projectsData.length - 1)) * 100);
+                if (active === index) {
+                  navigate(`/projects/${project.id}`);
+                } else {
+                  setProgress((index / (projects.length - 1)) * 100);
+                }
               }}
             >
               <CarouselBox>
                 <ItemTitle>{project.title}</ItemTitle>
                 <ItemNum>{String(index + 1).padStart(2, '0')}</ItemNum>
-                <ItemImage src={project.img} alt={project.title} referrerPolicy="no-referrer" />
+                <ItemImage src={project.image} alt={project.title} referrerPolicy="no-referrer" />
               </CarouselBox>
             </CarouselItem>
           );
@@ -378,7 +376,7 @@ export default function SkillsSection() {
             maxWidth: '100%',
           }}
         >
-          {projectsData[active].tools.map((tool, index) => (
+          {projects[active].tools.map((tool, index) => (
             <ToolItem key={index} tool={tool} />
           ))}
         </motion.div>

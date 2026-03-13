@@ -1,17 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { ThemeProvider, CssBaseline, GlobalStyles } from '@mui/material';
-import { AnimatePresence } from 'motion/react';
+import { ThemeProvider, CssBaseline, GlobalStyles, Box } from '@mui/material';
+import { AnimatePresence, motion } from 'motion/react';
 import { theme } from './theme';
 import NavBar from './components/NavBar';
 import HeroSection from './components/HeroSection';
-import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';
+import SkillsPage from './components/SkillsPage';
+import ProjectDetailPage from './components/ProjectDetailPage';
 import ExperienceSection from './components/ExperienceSection';
+import AboutSection from './components/AboutSection';
 import StarBackground from './components/StarBackground';
-import ScrollProgress from './components/ScrollProgress';
 import GridBackground from './components/GridBackground';
 import IntroAnimation from './components/IntroAnimation';
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+const PageTransition = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -19,10 +43,12 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HeroSection />} />
-        <Route path="/projects" element={<SkillsSection />} />
-        <Route path="/experience" element={<ExperienceSection />} />
-        <Route path="/about" element={<AboutSection />} />
+        <Route path="/" element={<PageTransition><HeroSection /></PageTransition>} />
+        <Route path="/about" element={<PageTransition><AboutSection /></PageTransition>} />
+        <Route path="/experience" element={<PageTransition><ExperienceSection /></PageTransition>} />
+        <Route path="/projects" element={<PageTransition><SkillsSection /></PageTransition>} />
+        <Route path="/projects/:projectId" element={<PageTransition><ProjectDetailPage /></PageTransition>} />
+        <Route path="/skills" element={<PageTransition><SkillsPage /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
@@ -30,15 +56,6 @@ function AnimatedRoutes() {
 
 export default function App() {
   const [showIntro, setShowIntro] = useState(true);
-
-  // Prevent scrolling while intro is visible
-  useEffect(() => {
-    if (showIntro) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [showIntro]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -50,12 +67,18 @@ export default function App() {
         />
       )}
       <Router>
+        <ScrollToTop />
         <StarBackground />
         <GridBackground />
         <GlobalStyles
           styles={{
             html: { scrollBehavior: 'smooth' },
-            body: { overflowX: 'hidden' }
+            body: { 
+              overflowX: 'hidden',
+              '&::-webkit-scrollbar': { display: 'none' },
+              msOverflowStyle: 'none',
+              scrollbarWidth: 'none'
+            }
           }}
         />
         <NavBar />

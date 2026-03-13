@@ -61,8 +61,14 @@ export default function ExperienceSection() {
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <FadeInSection>
-          <Typography variant="h2" sx={{ mb: 8, display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box component="span" sx={{ width: 4, height: 40, bgcolor: 'primary.main' }} />
+          <Typography variant="h2" sx={{ 
+            mb: { xs: 4, md: 8 }, 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 2,
+            fontSize: { xs: '2rem', md: '3.75rem' }
+          }}>
+            <Box component="span" sx={{ width: 4, height: { xs: 30, md: 40 }, bgcolor: 'primary.main' }} />
             EXPERIENCE
           </Typography>
           
@@ -100,7 +106,11 @@ export default function ExperienceSection() {
                               display: { xs: 'none', md: 'block' }
                             }} 
                           />
-                          <Typography variant="h4" sx={{ mb: 1, fontWeight: 700 }}>{job.role}</Typography>
+                          <Typography variant="h4" sx={{ 
+                            mb: 1, 
+                            fontWeight: 700,
+                            fontSize: { xs: '1.5rem', md: '2.125rem' }
+                          }}>{job.role}</Typography>
                           <Typography variant="h6" sx={{ mb: 1, color: 'text.secondary' }}>{job.company}</Typography>
                           <Typography variant="body2" sx={{ mb: 3, color: 'text.secondary', display: 'flex', alignItems: 'center', gap: 1 }}>
                             <MapIcon fontSize="small" /> {job.location}
@@ -123,9 +133,15 @@ export default function ExperienceSection() {
             </Stack>
           </motion.div>
 
-          <Box sx={{ mt: 12 }}>
-            <Typography variant="h2" sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box component="span" sx={{ width: 4, height: 40, bgcolor: 'primary.main' }} />
+          <Box sx={{ mt: { xs: 8, md: 12 } }}>
+            <Typography variant="h2" sx={{ 
+              mb: { xs: 4, md: 6 }, 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: 2,
+              fontSize: { xs: '2rem', md: '3.75rem' }
+            }}>
+              <Box component="span" sx={{ width: 4, height: { xs: 30, md: 40 }, bgcolor: 'primary.main' }} />
               EDUCATION
             </Typography>
             <motion.div

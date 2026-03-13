@@ -10,36 +10,36 @@ import JavascriptIcon from '@mui/icons-material/Javascript';
 
 export const personalInfo = {
   name: "Bhupendra Singh Rawat",
-  headline: "Data Science & Analytics | Python, SQL, Machine Learning",
-  subHeadline: "Building End-to-End Data Solutions on GCP & AWS",
+  headline: "Full Stack Engineer",
+  subHeadline: "Building scalable solutions with Python, React, FastAPI, GCP, and AWS",
   location: "Delhi, India",
-  email: "alphaparty08@gmail.com",
-  phone: "9634169371",
+  email: "bhupendrasr08@gmail.com",
+  phone: "6397123756",
   linkedin: "https://www.linkedin.com/in/bhupendrasinghrawat",
   github: "#",
   summary: [
-    "I thrive at the intersection of Mathematics, Programming, and Storytelling.",
-    "My journey into Data Science began with a curiosity for how raw numbers can predict trends and solve real-world problems. Today, I specialize in transforming messy datasets into clear, visual narratives that help stakeholders make informed decisions.",
-    "I bridge the gap between technical complexity and business value, presenting insights in an engaging way for both technical and non-technical audiences."
+    "I am a passionate Backend Engineer with a strong foundation in building robust, scalable APIs and server-side applications.",
+    "While my core expertise lies in backend development using Python and FastAPI, I am also a capable partial Frontend Engineer, leveraging React to build intuitive user interfaces.",
+    "I have hands-on experience deploying and managing applications across major cloud platforms, including Google Cloud Platform (GCP) and Amazon Web Services (AWS), ensuring high availability and performance."
   ]
 };
 
 export const skills = [
-  { name: "Python (Pandas, NumPy)", icon: <CodeIcon />, category: "Languages" },
+  { name: "Python", icon: <CodeIcon />, category: "Languages" },
+  { name: "React", icon: <JavascriptIcon />, category: "Frontend" },
+  { name: "FastAPI", icon: <ApiIcon />, category: "Backend" },
+  { name: "GCP & AWS", icon: <CloudIcon />, category: "Cloud" },
   { name: "SQL (MySQL)", icon: <StorageIcon />, category: "Databases" },
-  { name: "AWS", icon: <CloudIcon />, category: "Cloud" },
-  { name: "Data Visualization", icon: <BarChartIcon />, category: "Analytics" },
   { name: "ETL Pipelines", icon: <TerminalIcon />, category: "Engineering" },
   { name: "Machine Learning", icon: <PsychologyIcon />, category: "Data Science" },
-  { name: "Qualys APIs", icon: <ApiIcon />, category: "API" },
-  { name: "JavaScript", icon: <JavascriptIcon />, category: "Languages" }
+  { name: "Data Visualization", icon: <BarChartIcon />, category: "Analytics" }
 ];
 
 export const experience = [
   {
     company: "ASPIA InfoTech",
     role: "Software Engineer",
-    period: "January 2023 - April 2024",
+    period: "January 2023 - Present",
     duration: "1 year 4 months",
     location: "Gurugram, Haryana, India",
     achievements: [
@@ -66,4 +66,17 @@ export const certifications = [
   "Relational Database",
   "Responsive Web Design",
   "Information Security"
+];
+
+export const projects = [
+  { id: 'ai-code-assistant', title: 'AI Code Assistant', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop', tools: ['React', 'TypeScript', 'OpenAI API', 'Node.js'], description: 'An intelligent code assistant that helps developers write better code faster.' },
+  { id: 'crypto-trading-bot', title: 'Crypto Trading Bot', image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=800&auto=format&fit=crop', tools: ['Python', 'Pandas', 'Binance API', 'Docker'], description: 'Automated trading bot for cryptocurrency markets with advanced technical analysis.' },
+  { id: 'real-estate-platform', title: 'Real Estate Platform', image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop', tools: ['Next.js', 'GraphQL', 'PostgreSQL', 'Tailwind'], description: 'Modern platform for buying, selling, and renting properties with real-time updates.' },
+  { id: 'health-tracking-app', title: 'Health Tracking App', image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop', tools: ['React Native', 'Firebase', 'Redux', 'Jest'], description: 'Comprehensive health and fitness tracker with personalized insights.' },
+  { id: 'cloud-data-pipeline', title: 'Cloud Data Pipeline', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop', tools: ['AWS S3', 'Lambda', 'Snowflake', 'Airflow'], description: 'Scalable data processing pipeline for cloud-based data warehouses.' },
+  { id: 'social-media-dashboard', title: 'Social Media Dashboard', image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=800&auto=format&fit=crop', tools: ['Vue.js', 'D3.js', 'Express', 'MongoDB'], description: 'Unified dashboard for monitoring social media metrics and engagement.' },
+  { id: 'multiplayer-game-server', title: 'Multiplayer Game Server', image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=800&auto=format&fit=crop', tools: ['Go', 'WebSockets', 'Redis', 'Kubernetes'], description: 'High-performance server for real-time multiplayer gaming experiences.' },
+  { id: 'portfolio-website', title: 'Portfolio Website', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop', tools: ['React', 'Framer Motion', 'MUI', 'Vite'], description: 'Personal portfolio showcasing projects and skills with interactive animations.' },
+  { id: 'inventory-management', title: 'Inventory Management', image: 'https://images.unsplash.com/photo-1586528116311-ad8ed7c508b0?q=80&w=800&auto=format&fit=crop', tools: ['Django', 'PostgreSQL', 'Celery', 'Redis'], description: 'Robust system for tracking inventory and orders in real-time.' },
+  { id: '3d-product-configurator', title: '3D Product Configurator', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop', tools: ['Three.js', 'WebGL', 'React Fiber', 'GSAP'], description: 'Interactive 3D tool for customizing and visualizing products.' },
 ];

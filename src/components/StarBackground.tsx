@@ -55,7 +55,8 @@ export default function StarBackground() {
         stars.push({
           x,
           y,
-          originalX: x, // Store original position for drift return? No, let's just use current.
+          originalX: x,
+          originalY: y,
           radius: Math.random() * 1.5 + 0.5,
           vx: (Math.random() - 0.5) * speedMultiplier,
           vy: (Math.random() - 0.5) * speedMultiplier,
