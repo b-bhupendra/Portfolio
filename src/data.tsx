@@ -25,14 +25,15 @@ export const personalInfo = {
 };
 
 export const skills = [
-  { name: "Python", icon: <CodeIcon />, category: "Languages" },
-  { name: "React", icon: <JavascriptIcon />, category: "Frontend" },
-  { name: "FastAPI", icon: <ApiIcon />, category: "Backend" },
-  { name: "GCP & AWS", icon: <CloudIcon />, category: "Cloud" },
-  { name: "SQL (MySQL)", icon: <StorageIcon />, category: "Databases" },
-  { name: "ETL Pipelines", icon: <TerminalIcon />, category: "Engineering" },
-  { name: "Machine Learning", icon: <PsychologyIcon />, category: "Data Science" },
-  { name: "Data Visualization", icon: <BarChartIcon />, category: "Analytics" }
+  { name: "Python", icon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" style={{ width: '1em', height: '1em', filter: 'brightness(0) invert(1)' }} />, category: "Languages", description: "Expert in Python for backend development, data processing, and scripting.", proficiency: 95 },
+  { name: "React", icon: <JavascriptIcon />, category: "Frontend", description: "Proficient in building interactive UIs and single-page applications with React.", proficiency: 85 },
+  { name: "FastAPI", icon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI" style={{ width: '1em', height: '1em', filter: 'brightness(0) invert(1)' }} />, category: "Backend", description: "Experienced in designing and building high-performance APIs using FastAPI.", proficiency: 90 },
+  { name: "GCP & AWS", icon: <CloudIcon />, category: "Cloud", description: "Skilled in deploying and managing scalable infrastructure on GCP and AWS.", proficiency: 80 },
+  { name: "SQL (MySQL)", icon: <StorageIcon />, category: "Databases", description: "Strong knowledge of relational databases, query optimization, and data modeling.", proficiency: 88 },
+  { name: "ETL Pipelines", icon: <TerminalIcon />, category: "Engineering", description: "Capable of designing robust ETL pipelines for data extraction and transformation.", proficiency: 82 },
+  { name: "Machine Learning", icon: <PsychologyIcon />, category: "Data Science", description: "Familiar with machine learning concepts and integrating ML models into production.", proficiency: 75 },
+  { name: "Data Visualization", icon: <BarChartIcon />, category: "Analytics", description: "Adept at creating insightful data visualizations and dashboards.", proficiency: 78 },
+  { name: "JavaScript", icon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" style={{ width: '1em', height: '1em', filter: 'brightness(0) invert(1)' }} />, category: "Languages", description: "Strong foundation in modern JavaScript (ES6+) for both frontend and backend.", proficiency: 88 }
 ];
 
 export const experience = [

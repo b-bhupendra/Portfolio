@@ -5,14 +5,15 @@ import { AnimatePresence, motion } from 'motion/react';
 import { theme } from './theme';
 import NavBar from './components/NavBar';
 import HeroSection from './components/HeroSection';
+import ProjectsSection from './components/ProjectsSection';
 import SkillsSection from './components/SkillsSection';
-import SkillsPage from './components/SkillsPage';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import ExperienceSection from './components/ExperienceSection';
 import AboutSection from './components/AboutSection';
 import StarBackground from './components/StarBackground';
 import GridBackground from './components/GridBackground';
 import IntroAnimation from './components/IntroAnimation';
+import GlobalBackButton from './components/GlobalBackButton';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -46,9 +47,9 @@ function AnimatedRoutes() {
         <Route path="/" element={<PageTransition><HeroSection /></PageTransition>} />
         <Route path="/about" element={<PageTransition><AboutSection /></PageTransition>} />
         <Route path="/experience" element={<PageTransition><ExperienceSection /></PageTransition>} />
-        <Route path="/projects" element={<PageTransition><SkillsSection /></PageTransition>} />
+        <Route path="/projects" element={<PageTransition><ProjectsSection /></PageTransition>} />
         <Route path="/projects/:projectId" element={<PageTransition><ProjectDetailPage /></PageTransition>} />
-        <Route path="/skills" element={<PageTransition><SkillsPage /></PageTransition>} />
+        <Route path="/skills" element={<PageTransition><SkillsSection /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
@@ -86,6 +87,7 @@ export default function App() {
           })}
         />
         <NavBar />
+        <GlobalBackButton />
         <AnimatedRoutes />
       </Router>
     </ThemeProvider>

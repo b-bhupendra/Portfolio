@@ -53,6 +53,7 @@ export default function ExperienceSection() {
       pb: { xs: 12, md: 4 }, 
       position: 'relative', 
       height: { xs: 'auto', md: '100vh' }, 
+      minHeight: { xs: '100vh', md: 'auto' },
       overflowY: { xs: 'hidden', md: 'auto' },
       overflowX: 'hidden',
       display: 'flex',

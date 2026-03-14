@@ -35,14 +35,6 @@ export default function ProjectDetailPage() {
         msOverflowStyle: 'none',
         scrollbarWidth: 'none'
       }}>
-        <Button 
-          startIcon={<ArrowBackIcon />} 
-          onClick={() => navigate('/projects')}
-          sx={{ color: 'primary.main', mb: 4 }}
-        >
-          Back to Projects
-        </Button>
-
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 6 }}>
           {/* Image Section */}
           <motion.div

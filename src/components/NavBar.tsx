@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Box, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
+import { Typography, Box, SpeedDial, SpeedDialAction, SpeedDialIcon, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import CodeIcon from '@mui/icons-material/Code';
 import TimelineIcon from '@mui/icons-material/Timeline';
@@ -13,6 +14,8 @@ import { motion, AnimatePresence } from 'motion/react';
 export default function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [logoState, setLogoState] = useState<'initial' | 'shining' | 'collapsed' | 'hidden'>('initial');
   const [open, setOpen] = useState(false);
 
@@ -168,7 +171,7 @@ export default function NavBar() {
         <SpeedDial
           ariaLabel="Navigation Menu"
           icon={<SpeedDialIcon icon={<MenuIcon />} openIcon={<CloseIcon />} />}
-          direction="left"
+          direction={isMobile ? "down" : "left"}
           onClose={(event, reason) => {
             if (reason !== 'mouseLeave') {
               setOpen(false);

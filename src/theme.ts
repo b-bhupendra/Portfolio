@@ -23,20 +23,45 @@ export const theme = createTheme({
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
       fontWeight: 700,
       color: '#F8FAFC',
+      letterSpacing: '-0.02em',
     },
     h2: {
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
       fontWeight: 600,
       color: '#F8FAFC',
+      letterSpacing: '-0.01em',
     },
     h3: {
-      fontWeight: 500,
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
+      fontWeight: 600,
       color: '#E2E8F0',
+      letterSpacing: '-0.01em',
+    },
+    h4: {
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
+      fontWeight: 600,
+    },
+    h5: {
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
+      fontWeight: 600,
+    },
+    h6: {
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
+      fontWeight: 600,
     },
     button: {
+      fontFamily: '"Inter", sans-serif',
       textTransform: 'none',
       fontWeight: 500,
+    },
+    body1: {
+      fontFamily: '"Inter", sans-serif',
+    },
+    body2: {
+      fontFamily: '"Inter", sans-serif',
     },
   },
   shape: {
