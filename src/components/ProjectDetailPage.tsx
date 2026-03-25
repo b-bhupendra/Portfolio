@@ -40,7 +40,7 @@ export default function ProjectDetailPage() {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <Box sx={{ 
               position: 'relative',
@@ -68,7 +68,7 @@ export default function ProjectDetailPage() {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
             <Typography variant="h2" sx={{ fontWeight: 800, mb: 2, color: 'white' }}>
               {project.title}

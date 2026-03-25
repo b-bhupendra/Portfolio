@@ -428,9 +428,9 @@ export default function HeroSection() {
                                 }}
                               >
                                 {
-                                  React.cloneElement(skill.icon as React.ReactElement, {
+                                  React.cloneElement(skill.icon as React.ReactElement<any>, {
                                     style: {
-                                      ...((skill.icon as React.ReactElement).props.style || {}),
+                                      ...((skill.icon as React.ReactElement<any>).props.style || {}),
                                       width: 24,
                                       height: 24,
                                       fontSize: 24,

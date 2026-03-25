@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import { Box, Container, Typography, Stack } from '@mui/material';
+import { Box, Container, Typography, Stack, Button } from '@mui/material';
 import { motion, useScroll, useTransform } from "motion/react";
+import DownloadIcon from '@mui/icons-material/Download';
 import ContactSection from './ContactSection';
 import { personalInfo } from '../data';
 
@@ -10,7 +11,7 @@ function FadeInSection({ children }: { children: React.ReactNode }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
     >
       {children}
     </motion.div>
@@ -40,7 +41,11 @@ export default function AboutSection({ compact = false }: { compact?: boolean })
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
+    }
   };
 
   return (
@@ -113,6 +118,33 @@ export default function AboutSection({ compact = false }: { compact?: boolean })
                     </motion.div>
                   ))}
                 </Stack>
+                <motion.div variants={item} style={{ marginTop: '2.5rem' }}>
+                  <Button
+                    variant="contained"
+                    href="/resume.pdf"
+                    download
+                    startIcon={<DownloadIcon />}
+                    sx={{
+                      bgcolor: 'white',
+                      color: 'black',
+                      px: 4,
+                      py: 1.5,
+                      borderRadius: '999px',
+                      fontWeight: 600,
+                      fontSize: 16,
+                      textTransform: 'none',
+                      boxShadow: '0 4px 14px 0 rgba(255, 255, 255, 0.1)',
+                      '&:hover': {
+                        bgcolor: '#EAEAEA',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 8px 25px rgba(255, 255, 255, 0.2)'
+                      },
+                      transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)'
+                    }}
+                  >
+                    Download CV
+                  </Button>
+                </motion.div>
               </motion.div>
             </FadeInSection>
           </Box>

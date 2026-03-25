@@ -78,7 +78,7 @@ export default function GlobalBackButton() {
                 boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
                 position: 'relative',
                 overflow: 'hidden',
-                transition: 'all 0.3s ease',
+                transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
                 '&:hover': {
                   bgcolor: 'rgba(40, 40, 60, 0.9)',
                   transform: 'scale(1.05)'

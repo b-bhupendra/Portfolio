@@ -125,7 +125,7 @@ const SkillCard = ({ skill, index }: { skill: any, index: number }) => {
         display: 'flex',
         flexDirection: 'column',
         p: 3,
-        transition: 'all 0.3s ease',
+        transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
         '&:hover': {
           bgcolor: 'rgba(30, 30, 50, 0.8)',
           border: '1px solid rgba(255,255,255,0.2)',

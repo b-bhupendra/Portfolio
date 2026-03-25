@@ -15,22 +15,22 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete, onSplashSta
   useEffect(() => {
     const sequence = async () => {
       // 1. Init
-      await new Promise(r => setTimeout(r, 100));
+      await new Promise(r => setTimeout(r, 50));
       setStage('drop');
 
-      // 2. Meteor falls (0.8s for a faster, punchier drop)
-      await new Promise(r => setTimeout(r, 800));
+      // 2. Meteor falls (0.4s for a faster, punchier drop)
+      await new Promise(r => setTimeout(r, 400));
       setStage('impact');
       
-      // 3. Show "Hi" for 1.2s
-      await new Promise(r => setTimeout(r, 1200));
+      // 3. Show "Hi" for 0.8s
+      await new Promise(r => setTimeout(r, 800));
       
       // 4. Waves/Splash Start
       setStage('ripple');
       onSplashStart(); 
 
       // 5. Done
-      await new Promise(r => setTimeout(r, 2000));
+      await new Promise(r => setTimeout(r, 1000));
       setStage('done');
       onComplete();
     };
@@ -41,7 +41,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete, onSplashSta
     <motion.div
       initial={{ opacity: 1 }}
       animate={{ opacity: stage === 'ripple' ? 0 : 1 }}
-      transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+      transition={{ duration: 1.0, ease: "easeInOut", delay: 0.1 }}
       style={{
         position: 'fixed',
         inset: 0,
@@ -66,7 +66,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete, onSplashSta
           <motion.div
             initial={{ width: 0, height: 0, opacity: 1, borderWidth: '8px' }}
             animate={{ width: '600px', height: '600px', opacity: 0, borderWidth: '1px' }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             style={{
               position: 'absolute',
               borderRadius: '50%',
@@ -83,7 +83,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete, onSplashSta
           <motion.div
             initial={{ width: 0, height: 0, opacity: 1, borderWidth: '4px' }}
             animate={{ width: '400px', height: '400px', opacity: 0, borderWidth: '1px' }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.15 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             style={{
               position: 'absolute',
               borderRadius: '50%',
@@ -100,7 +100,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete, onSplashSta
           <motion.div
             initial={{ width: '100px', height: '100px', opacity: 1, borderWidth: '4px' }}
             animate={{ width: '250vw', height: '250vw', opacity: 0, borderWidth: '0px' }}
-            transition={{ duration: 2, ease: "easeInOut" }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
             style={{
               position: 'absolute',
               borderRadius: '50%',
@@ -119,7 +119,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete, onSplashSta
                   initial={{ opacity: 0, y: 30, scale: 0.9, filter: 'blur(10px)' }}
                   animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
                   exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   style={{
                       position: 'absolute',
                       zIndex: 4,
@@ -147,7 +147,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete, onSplashSta
               initial={{ y: '-100vh', opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ opacity: 0, scale: 0 }}
-              transition={{ duration: 0.8, ease: "easeIn" }}
+              transition={{ duration: 0.4, ease: "easeIn" }}
               style={{
                 width: '4px',
                 height: '150px',

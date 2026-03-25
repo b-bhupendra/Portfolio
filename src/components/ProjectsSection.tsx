@@ -41,7 +41,7 @@ export default function ProjectsSection() {
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: showHint ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
       >
         <Typography 
           variant="h3" 
@@ -127,7 +127,7 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, scale: 0.8, width: 0 }}
               animate={{ opacity: 1, scale: 1, width: 'auto' }}
               exit={{ opacity: 0, scale: 0.8, width: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               style={{ overflow: 'hidden' }}
             >
               <Box sx={{ 

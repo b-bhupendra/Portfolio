@@ -21,22 +21,22 @@ export default function NavBar() {
 
   useEffect(() => {
     // Sync with IntroAnimation:
-    // Intro starts fading at 3.5s, ends at 5.5s.
+    // Intro finishes at ~2.25s.
     
-    // Start shine effect around 4.8s (just before full reveal)
+    // Start shine effect around 1.8s (just before full reveal)
     const shineTimer = setTimeout(() => {
       setLogoState('shining');
-    }, 4800);
+    }, 1800);
 
     // Collapse to "B." after shine completes
     const collapseTimer = setTimeout(() => {
       setLogoState('collapsed');
-    }, 5500);
+    }, 2500);
 
     // Hide completely after collapse
     const hideTimer = setTimeout(() => {
       setLogoState('hidden');
-    }, 6500);
+    }, 3500);
 
     return () => {
       clearTimeout(shineTimer);
@@ -190,7 +190,7 @@ export default function NavBar() {
               border: open ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent',
               boxShadow: open ? undefined : 'none',
               color: 'white',
-              transition: 'all 0.3s ease',
+              transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
               '&:hover': {
                 bgcolor: 'rgba(255, 255, 255, 0.1)',
                 transform: 'scale(1.05)',
@@ -213,7 +213,7 @@ export default function NavBar() {
                   bgcolor: 'rgba(5, 5, 5, 0.8)',
                   color: 'rgba(255, 255, 255, 0.7)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  transition: 'all 0.3s ease',
+                  transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
                     bgcolor: 'primary.main',
                     color: 'white',
