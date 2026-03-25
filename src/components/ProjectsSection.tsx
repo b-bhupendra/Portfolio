@@ -38,29 +38,45 @@ export default function ProjectsSection() {
       py: { xs: 8, md: 0 },
       bgcolor: 'transparent' // Transparent background to show global background
     }}>
-      <Typography 
-        variant="h3" 
-        sx={{ 
-          color: 'white', 
-          mb: { xs: 4, md: 8 }, 
-          fontWeight: 'bold', 
-          zIndex: 0, // Lower z-index so cards overlap it
-          textAlign: 'center',
-          fontSize: { xs: '2rem', md: '3rem' }
-        }}
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: showHint ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
       >
-        Projects
-      </Typography>
+        <Typography 
+          variant="h3" 
+          sx={{ 
+            color: 'white', 
+            mb: { xs: 4, md: 8 }, 
+            fontWeight: 'bold', 
+            zIndex: 0, // Lower z-index so cards overlap it
+            textAlign: 'center',
+            fontSize: { xs: '2rem', md: '3rem' }
+          }}
+        >
+          Projects
+        </Typography>
+      </motion.div>
       
-      <Box sx={{ 
-        position: 'relative', 
-        width: '100%', 
-        height: { xs: 400, sm: 480, md: 520 }, 
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        perspective: 1000 
-      }}>
+      <motion.div 
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        onDragEnd={(e: any, info: any) => {
+          if (info.offset.x < -50) handleNext();
+          else if (info.offset.x > 50) handlePrev();
+        }}
+        style={{ 
+          position: 'relative', 
+          width: '100%', 
+          height: 520, // Keep a fixed height for the container
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          perspective: 1000,
+          cursor: 'grab'
+        }}
+        whileTap={{ cursor: 'grabbing' }}
+      >
         <AnimatePresence initial={false}>
           {projects.map((project, index) => {
             // Calculate shortest path offset
@@ -90,7 +106,7 @@ export default function ProjectsSection() {
             );
           })}
         </AnimatePresence>
-      </Box>
+      </motion.div>
 
       <Box sx={{ display: 'flex', gap: { xs: 2, sm: 4 }, mt: { xs: 6, md: 8 }, zIndex: 10, alignItems: 'center', height: 48 }}>
         <IconButton 

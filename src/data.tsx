@@ -26,7 +26,7 @@ export const personalInfo = {
 
 export const skills = [
   { name: "Python", icon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" style={{ width: '1em', height: '1em', filter: 'brightness(0) invert(1)' }} />, category: "Languages", description: "Expert in Python for backend development, data processing, and scripting.", proficiency: 95 },
-  { name: "React", icon: <JavascriptIcon />, category: "Frontend", description: "Proficient in building interactive UIs and single-page applications with React.", proficiency: 85 },
+  { name: "React", icon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" style={{ width: '1em', height: '1em', filter: 'brightness(0) invert(1)' }} />, category: "Frontend", description: "Proficient in building interactive UIs and single-page applications with React.", proficiency: 85 },
   { name: "FastAPI", icon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI" style={{ width: '1em', height: '1em', filter: 'brightness(0) invert(1)' }} />, category: "Backend", description: "Experienced in designing and building high-performance APIs using FastAPI.", proficiency: 90 },
   { name: "GCP & AWS", icon: <CloudIcon />, category: "Cloud", description: "Skilled in deploying and managing scalable infrastructure on GCP and AWS.", proficiency: 80 },
   { name: "SQL (MySQL)", icon: <StorageIcon />, category: "Databases", description: "Strong knowledge of relational databases, query optimization, and data modeling.", proficiency: 88 },

@@ -50,7 +50,7 @@ export default function AboutSection({ compact = false }: { compact?: boolean })
       display: 'flex',
       alignItems: 'center',
       position: 'relative', 
-      overflowY: { xs: 'hidden', md: 'auto' },
+      overflowY: 'auto',
       overflowX: 'hidden',
       bgcolor: 'transparent',
       py: { xs: 12, md: 16 },

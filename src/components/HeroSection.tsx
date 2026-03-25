@@ -173,7 +173,7 @@ export default function HeroSection() {
                     Hi, I'm 
                     <motion.div variants={avatarVariants}>
                       <Avatar 
-                        src="https://picsum.photos/seed/bhupendra/200/200" 
+                        src="https://media.licdn.com/dms/image/v2/D5635AQE1TCckiqABRw/profile-framedphoto-shrink_400_400/B56Z0BozWXKkAc-/0/1773848966778?e=1775023200&v=beta&t=qAIy2xOBGXoDRjae0rFRC0v_xO5OMsQd6HZ0utbnIrw" 
                         sx={{ 
                           width: { xs: 40, md: 56 }, 
                           height: { xs: 40, md: 56 }, 
@@ -336,6 +336,7 @@ export default function HeroSection() {
                           initial={{ opacity: 0, height: 0, y: -10 }}
                           animate={{ opacity: 1, height: 'auto', y: 0 }}
                           exit={{ opacity: 0, height: 0, y: -10 }}
+                          transition={{ duration: 0.4, ease: "easeInOut" }}
                           sx={{ 
                             position: 'relative', 
                             width: '100%', 
@@ -343,7 +344,8 @@ export default function HeroSection() {
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: { xs: 'center', sm: 'flex-start' },
-                            overflow: 'hidden'
+                            overflow: 'visible',
+                            zIndex: 100
                           }}
                         >
                           <Stack direction="row" spacing={2} sx={{ py: 1 }}>
@@ -361,19 +363,19 @@ export default function HeroSection() {
                                   href={social.href} 
                                   target={social.href.startsWith('http') ? "_blank" : undefined} 
                                   sx={{ 
-                                    width: 64,
-                                    height: 64,
+                                    p: 1.5,
+                                    borderColor: 'rgba(255,255,255,0.1)',
                                     color: 'white', 
-                                    bgcolor: 'rgba(255,255,255,0.05)',
+                                    transition: 'all 0.3s ease',
+                                    borderRadius: '50%',
                                     border: '1px solid rgba(255,255,255,0.1)',
-                                    boxShadow: 'inset 0 0 15px rgba(255,255,255,0.1), 0 8px 16px rgba(0,0,0,0.3)',
-                                    backdropFilter: 'blur(10px)',
                                     '&:hover': { 
-                                      color: 'primary.main', 
                                       borderColor: 'primary.main',
                                       bgcolor: alpha(theme.palette.primary.main, 0.1),
+                                      transform: 'translateY(-2px)',
+                                      boxShadow: `0 5px 15px -5px ${alpha(theme.palette.primary.main, 0.3)}`
                                     },
-                                    '& > svg': { fontSize: 28 }
+                                    '& > svg': { fontSize: 24 }
                                   }}
                                 >
                                   {social.icon}
@@ -381,9 +383,6 @@ export default function HeroSection() {
                               </motion.div>
                             ))}
                           </Stack>
-                          <Typography sx={{ mt: 1, fontSize: 14, color: 'text.secondary', fontWeight: 500, textAlign: 'center', width: '100%' }}>
-                            {personalInfo.email}
-                          </Typography>
                         </Box>
                       )}
                     </AnimatePresence>
@@ -396,101 +395,67 @@ export default function HeroSection() {
                           initial={{ opacity: 0, height: 0, y: -10 }}
                           animate={{ opacity: 1, height: 'auto', y: 0 }}
                           exit={{ opacity: 0, height: 0, y: -10 }}
+                          transition={{ duration: 0.4, ease: "easeInOut" }}
                           sx={{ 
                             position: 'relative', 
                             width: '100%', 
                             mt: 2,
                             display: 'flex',
                             justifyContent: { xs: 'center', sm: 'flex-start' },
-                            overflow: 'visible'
+                            overflow: 'visible',
+                            zIndex: 100
                           }}
                         >
                           <Stack direction="row" sx={{ py: 1, flexWrap: 'wrap', gap: 2, justifyContent: { xs: 'center', sm: 'flex-start' } }}>
                             {skills.slice(0, 4).map((skill, index) => (
-                              <Tooltip key={index} title={skill.name} arrow placement="top">
-                                <motion.div
-                                  whileHover={{ scale: 1.1, y: -5 }}
-                                  style={{
-                                    width: 64,
-                                    height: 64,
-                                    borderRadius: '50%',
-                                    background: 'rgba(255,255,255,0.05)',
-                                    boxShadow: 'inset 0 0 15px rgba(255,255,255,0.1), 0 8px 16px rgba(0,0,0,0.3)',
-                                    backdropFilter: 'blur(10px)',
-                                    border: '1px solid rgba(255,255,255,0.2)',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: 'white',
-                                    position: 'relative',
-                                    overflow: 'hidden',
-                                    cursor: 'pointer'
-                                  }}
-                                >
-                                  {/* Water fill effect - Back wave */}
-                                  <Box sx={{
-                                    position: 'absolute',
-                                    top: `${100 - skill.proficiency}%`,
-                                    left: '-50%',
-                                    width: '200%',
-                                    height: '200%',
-                                    bgcolor: 'rgba(59, 130, 246, 0.3)',
-                                    borderRadius: '40%',
-                                    animation: 'waterSpin 5s linear infinite',
-                                    zIndex: 0,
-                                    transition: 'top 1s ease-out',
-                                    '@keyframes waterSpin': {
-                                      '0%': { transform: 'rotate(0deg)' },
-                                      '100%': { transform: 'rotate(360deg)' }
+                              <IconButton
+                                key={index}
+                                onClick={() => navigate('/skills')}
+                                sx={{
+                                  p: 1.5,
+                                  borderColor: 'rgba(255,255,255,0.1)',
+                                  color: 'white',
+                                  transition: 'all 0.3s ease',
+                                  borderRadius: '50%',
+                                  border: '1px solid rgba(255,255,255,0.1)',
+                                  '&:hover': {
+                                    borderColor: 'primary.main',
+                                    bgcolor: alpha(theme.palette.primary.main, 0.1),
+                                    transform: 'translateY(-2px)',
+                                    boxShadow: `0 5px 15px -5px ${alpha(theme.palette.primary.main, 0.3)}`
+                                  }
+                                }}
+                              >
+                                {
+                                  React.cloneElement(skill.icon as React.ReactElement, {
+                                    style: {
+                                      ...((skill.icon as React.ReactElement).props.style || {}),
+                                      width: 24,
+                                      height: 24,
+                                      fontSize: 24,
                                     }
-                                  }} />
-                                  {/* Water fill effect - Front wave */}
-                                  <Box sx={{
-                                    position: 'absolute',
-                                    top: `${100 - skill.proficiency + 3}%`,
-                                    left: '-50%',
-                                    width: '200%',
-                                    height: '200%',
-                                    bgcolor: 'rgba(59, 130, 246, 0.5)',
-                                    borderRadius: '45%',
-                                    animation: 'waterSpin 7s linear infinite',
-                                    zIndex: 0,
-                                    transition: 'top 1s ease-out'
-                                  }} />
-                                  <Box sx={{ zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', '& > svg': { fontSize: 28, color: 'white', filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.5))' } }}>
-                                      {skill.icon}
-                                    </Box>
-                                  </Box>
-                                </motion.div>
-                              </Tooltip>
+                                  })
+                                }
+                              </IconButton>
                             ))}
                             {/* >> Button */}
                             <Tooltip title="View All Skills" arrow placement="top">
-                              <Box
-                                component={motion.div}
-                                whileHover={{ scale: 1.1, y: -5 }}
-                                whileTap={{ scale: 0.9 }}
+                              <IconButton
                                 onClick={() => navigate('/skills')}
                                 sx={{
-                                  width: 64,
-                                  height: 64,
+                                  p: 1.5,
+                                  border: '1px solid rgba(255,255,255,0.1)',
+                                  color: 'primary.main',
                                   borderRadius: '50%',
-                                  background: 'rgba(255,255,255,0.05)',
-                                  boxShadow: 'inset 0 0 15px rgba(255,255,255,0.1), 0 8px 16px rgba(0,0,0,0.3)',
-                                  backdropFilter: 'blur(10px)',
-                                  border: '1px dashed rgba(255,255,255,0.3)',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  color: 'white',
-                                  cursor: 'pointer',
-                                  overflow: 'hidden' // Prevents expanding into a square
+                                  animation: 'flash 1.5s infinite',
+                                  '@keyframes flash': {
+                                    '0%, 100%': { opacity: 1 },
+                                    '50%': { opacity: 0.5 }
+                                  }
                                 }}
                               >
-                                <ArrowForwardIcon sx={{ color: 'white', fontSize: 28 }} />
-                              </Box>
+                                <ArrowForwardIcon />
+                              </IconButton>
                             </Tooltip>
                           </Stack>
                         </Box>
@@ -551,12 +516,11 @@ export default function HeroSection() {
                         color: 'primary.main', 
                         textDecoration: 'none', 
                         fontWeight: 600,
-                        ml: 1,
-                        display: 'inline-block',
+                        display: 'inline',
                         '&:hover': { textDecoration: 'underline' }
                       }}
                     >
-                      Know more
+                      &nbsp;Know more
                     </Typography>
                   </Typography>
                 </Stack>
