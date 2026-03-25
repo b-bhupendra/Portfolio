@@ -284,7 +284,7 @@ export default function HeroSection() {
                         sx={{ 
                           bgcolor: 'white', 
                           color: 'black', 
-                          px: 3.5, 
+                          px: 4, 
                           py: 1.5, 
                           borderRadius: '999px', 
                           fontWeight: 600, 
@@ -294,9 +294,9 @@ export default function HeroSection() {
                           '&:hover': { 
                             bgcolor: '#EAEAEA',
                             transform: 'translateY(-2px)',
-                            boxShadow: '0 6px 20px rgba(255, 255, 255, 0.15)'
+                            boxShadow: '0 8px 25px rgba(255, 255, 255, 0.2)'
                           },
-                          transition: 'all 0.3s ease'
+                          transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)'
                         }}
                       >
                         Contact Me
@@ -310,7 +310,7 @@ export default function HeroSection() {
                         sx={{ 
                           color: 'white', 
                           borderColor: 'rgba(255, 255, 255, 0.3)',
-                          px: 3.5, 
+                          px: 4, 
                           py: 1.5, 
                           borderRadius: '999px', 
                           fontWeight: 600, 
@@ -318,10 +318,11 @@ export default function HeroSection() {
                           textTransform: 'none',
                           '&:hover': { 
                             borderColor: 'white',
-                            bgcolor: 'rgba(255, 255, 255, 0.05)',
+                            bgcolor: 'rgba(255, 255, 255, 0.08)',
                             transform: 'translateY(-2px)',
+                            boxShadow: '0 8px 25px rgba(255, 255, 255, 0.1)'
                           },
-                          transition: 'all 0.3s ease'
+                          transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)'
                         }}
                       >
                         Skills
